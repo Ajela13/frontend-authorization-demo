@@ -5,14 +5,30 @@ import MyProfile from "./MyProfile";
 import Register from "./Register";
 import "./styles/App.css";
 import { useState } from "react"; // New import
+import ProtectedRoute from "./ProtectedRoute"; // New import
+
 // other imports
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <Routes>
-      <Route path="/ducks" element={<Ducks />} />
-      <Route path="/my-profile" element={<MyProfile />} />
+      <Route
+        path="/ducks"
+        element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <Ducks />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/my-profile"
+        element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <MyProfile />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/login"
         element={
