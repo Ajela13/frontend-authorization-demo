@@ -8,6 +8,7 @@ import { useState } from "react"; // New import
 import ProtectedRoute from "./ProtectedRoute"; // New import
 import * as auth from "../utils/auth";
 import { setToken } from "../utils/token";
+import { useEffect } from "react";
 // other imports
 
 function App() {
@@ -50,6 +51,16 @@ function App() {
       })
       .catch(console.error);
   };
+
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    // TODO - handle JWT
+  }, []);
 
   return (
     <Routes>
