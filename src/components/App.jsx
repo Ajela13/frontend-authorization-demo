@@ -7,8 +7,10 @@ import "./styles/App.css";
 import { useState } from "react"; // New import
 import ProtectedRoute from "./ProtectedRoute"; // New import
 import * as auth from "../utils/auth";
-import { setToken } from "../utils/token";
+import { setToken, getToken } from "../utils/token";
 import { useEffect } from "react";
+import * as api from "../utils/api";
+
 // other imports
 
 function App() {
@@ -58,6 +60,16 @@ function App() {
     if (!jwt) {
       return;
     }
+    api
+      .getUserInfo(jwt)
+      .then(({ username, email }) => {
+        // If the response is successful, log the user in, save their
+        // data to state, and navigate them to /ducks.
+        setIsLoggedIn(true);
+        setUserData({ username, email });
+        navigate("/ducks");
+      })
+      .catch(console.error);
 
     // TODO - handle JWT
   }, []);
