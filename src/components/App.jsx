@@ -7,6 +7,7 @@ import "./styles/App.css";
 import { useState } from "react"; // New import
 import ProtectedRoute from "./ProtectedRoute"; // New import
 import * as auth from "../utils/auth";
+import { setToken } from "../utils/token";
 // other imports
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
       .then((data) => {
         // Verify that a jwt is included before logging the user in.
         if (data.jwt) {
+          setToken(data.jwt);
           setUserData(data.user); // save user's data to state
           setIsLoggedIn(true); // log the user in
           navigate("/ducks"); // send them to /ducks
