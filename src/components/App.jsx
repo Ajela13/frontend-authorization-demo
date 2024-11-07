@@ -11,7 +11,7 @@ import { setToken, getToken } from "../utils/token";
 import { useEffect } from "react";
 import * as api from "../utils/api";
 import { useLocation } from "react-router-dom";
-import AppContext from "../context/AppContext";
+import AppContext from "../contexts/AppContext";
 
 // other imports
 
